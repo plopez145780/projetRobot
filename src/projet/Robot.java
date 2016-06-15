@@ -36,6 +36,7 @@ public class Robot {
         this.x = x;
         this.y = y;
         this.monde = monde;
+        monde.addRobot(this);
     }
 
     public Robot(int x, int y, int numero, Monde monde){
@@ -57,13 +58,14 @@ public class Robot {
         this.monde = monde;
     }
 
-    //METHODES
+//METHODES
     /**
      * Déplace le robot (si la case est libre)
      * @param x
      * @param y
      */
     public void vaEn(int x, int y){
+        monde.movRobot(x, y, this);
         this.x = x;
         this.y = y;
     }

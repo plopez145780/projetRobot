@@ -29,6 +29,11 @@ public class Monde {
         initialisationCase();
     }
 
+    //GETTER et SETTER
+    public Robot getRobot(int x, int y) {
+        return tabDesRobots[x][y];
+    }
+
     //METHODES
     private void initialisationCase(){
         for (int i = 0; i < largueur; i++){
@@ -53,11 +58,16 @@ public class Monde {
     public void occupe(int x, int y, int num){
         this.tabDesCases[x][y] = num;
     }
+
     public void addRobot(Robot bot){
         int xBot = bot.getX();
         int yBot = bot.getY();
         tabDesRobots[xBot][yBot] = bot;
         bot.setMonde(this);
+    }
+    public void movRobot(int newX, int newY, Robot bot){
+        tabDesRobots[bot.getX()][bot.getY()] = null;
+        tabDesRobots[newX][newY] = bot;
     }
 
     public String toString(){
@@ -74,9 +84,5 @@ public class Monde {
             str += "\n";
         }
         return str;
-    }
-
-    public Robot getRobot(int x, int y) {
-        return tabDesRobots[x][y];
     }
 }
