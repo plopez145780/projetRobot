@@ -1,7 +1,7 @@
 package projet;
 
 /**
- * Created by pierr on 15/06/2016.
+ * Created by Pierre Lopez on 15/06/2016.
  */
 public class Robot {
     //ATTRIBUTS STATIC
@@ -65,7 +65,8 @@ public class Robot {
      * @param y
      */
     public void vaEn(int x, int y){
-        monde.movRobot(x, y, this);
+        if (monde !=null )
+            monde.movRobot(x, y, this);
         this.x = x;
         this.y = y;
     }

@@ -1,7 +1,5 @@
 package projet;
 
-import java.util.ArrayList;
-
 /**
  * Created by Pierre Lopez on 15/06/2016.
  */
