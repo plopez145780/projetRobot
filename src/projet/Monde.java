@@ -1,19 +1,23 @@
 package projet;
 
+import java.util.ArrayList;
+
 /**
- * Created by pierr on 15/06/2016.
+ * Created by Pierre Lopez on 15/06/2016.
  */
 public class Monde {
-    //ATRIBUTS
+    //ATTRIBUTS
     private int largueur;
     private int longueur;
     private int tabDesCases[][];
+    private Robot tabDesRobots[][];
 
     //CONSTRUCTEURS
     public Monde(){
         this.largueur = 20;
         this.longueur = 30;
         this.tabDesCases = new int[largueur][longueur];
+        this.tabDesRobots = new Robot[largueur][longueur];
         initialisationCase();
     }
 
@@ -21,6 +25,7 @@ public class Monde {
         this.largueur = largueur;
         this.longueur = longueur;
         this.tabDesCases = new int[this.largueur][this.longueur];
+        this.tabDesRobots = new Robot[this.largueur][this.longueur];
         initialisationCase();
     }
 
@@ -48,6 +53,12 @@ public class Monde {
     public void occupe(int x, int y, int num){
         this.tabDesCases[x][y] = num;
     }
+    public void addRobot(Robot bot){
+        int xBot = bot.getX();
+        int yBot = bot.getY();
+        tabDesRobots[xBot][yBot] = bot;
+        bot.setMonde(this);
+    }
 
     public String toString(){
         String str = "";
@@ -65,9 +76,7 @@ public class Monde {
         return str;
     }
 
-
-
-
-
-
+    public Robot getRobot(int x, int y) {
+        return tabDesRobots[x][y];
+    }
 }
