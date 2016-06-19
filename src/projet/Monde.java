@@ -63,9 +63,11 @@ public class Monde {
         tabDesRobots[xBot][yBot] = bot;
         bot.setMonde(this);
     }
-    public void movRobot(int newX, int newY, Robot bot){
-        tabDesRobots[bot.getX()][bot.getY()] = null;
-        tabDesRobots[newX][newY] = bot;
+    public void movRobot(int oldX, int oldY, Robot bot){
+        tabDesRobots[oldX][oldY] = null;
+        tabDesRobots[bot.getX()][bot.getX()] = bot;
+        libere(oldX, oldY);
+        occupe(bot.getX(), bot.getX(), bot.getNumero());
     }
 
     public String toString(){

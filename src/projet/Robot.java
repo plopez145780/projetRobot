@@ -1,5 +1,7 @@
 package projet;
 
+import javax.management.RuntimeErrorException;
+
 /**
  * Created by Pierre Lopez on 15/06/2016.
  */
@@ -57,18 +59,30 @@ public class Robot {
     public void setMonde(Monde monde){
         this.monde = monde;
     }
+    public int getNumero() {return numero;}
 
-//METHODES
+    //METHODES
     /**
      * Déplace le robot (si la case est libre)
      * @param x
      * @param y
      */
-    public void vaEn(int x, int y){
-        if (monde !=null )
-            monde.movRobot(x, y, this);
+    public void vaEn(int x, int y) {
+        int oldX = this.x;
+        int oldY = this.y;
+
         this.x = x;
         this.y = y;
+
+        if (monde != null) {
+            if (! monde.estLibre(x, y)) {
+                this.x = oldX;
+                this.y = oldY;
+                throw new RuntimeException("impossible de déplacer");
+            }
+            else
+                monde.movRobot(oldX, oldY, this);
+        }
     }
 
     /**
